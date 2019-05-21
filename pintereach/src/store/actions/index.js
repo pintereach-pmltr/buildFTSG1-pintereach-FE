@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { axiosWithAuth }from '../../utils/axiosWithAuth';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 // endpoints
 const eLogin = 'https://pintereach0.herokuapp.com/api/auth/login';
@@ -34,7 +34,7 @@ export const login = creds => dispatch => {
     .then(res => {
         // debugger;
         console.log(res)
-        localStorage.setItem('token', res.data.payload);
+        localStorage.setItem('token', res.data.token);
         dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
     })
     .catch(err => {
@@ -50,7 +50,7 @@ export const register = creds => dispatch => {
     .post(eRegister, creds)
     .then(res => {
         console.log(res)
-        localStorage.setItem('token', res.data.payload)
+        localStorage.setItem('token', res.data.token)
         dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
     })
     .catch(err => {
@@ -61,7 +61,7 @@ export const register = creds => dispatch => {
 
 export const fetchBoards = () => dispatch => {
     dispatch({ type: FETCHING });
-    axios
+    axiosWithAuth()
         .get(eGetBoards)
         .then(res => {
             dispatch({ type: FETCHED, payload: res.data });
