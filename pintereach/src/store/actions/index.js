@@ -6,10 +6,10 @@ const eLogin = 'https://pintereach0.herokuapp.com/api/auth/login';
 const eRegister = 'https://pintereach0.herokuapp.com/api/auth/register';
 const eGetBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
 const ePostBoards = 'https://pintereach0.herokuapp.com/api/boards/';
-const eDeleteBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
-const eGetArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
-const ePostArticles = 'https://pintereach0.herokuapp.com/api/articles/';
-const eDeleteArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
+// const eDeleteBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
+// const eGetArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
+// const ePostArticles = 'https://pintereach0.herokuapp.com/api/articles/';
+// const eDeleteArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
 
 // login actions
 export const LOG_START = 'LOG_START'

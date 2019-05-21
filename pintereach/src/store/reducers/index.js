@@ -53,7 +53,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.BOARD_ADD:
       return {
         ...state,
-        boards: [...action.payload]
+        boards: [...state.boards,{...action.payload}]
       };
     default:
       return state;

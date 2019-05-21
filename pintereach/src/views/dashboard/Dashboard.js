@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // action imports
 import { fetchBoards } from '../../store/actions/index';
+// component imports
+import BoardForm from '../../components/BoardForm';
 
 class Dashboard extends Component {
     componentDidMount() {
@@ -11,9 +13,12 @@ class Dashboard extends Component {
     }
     
     render() {
-        console.log('[DASH CHECK]', this.props);
+        console.log('[DASH CHECK]', this.props.boards);
         return (
-            <div>hello from dashboard</div>
+            <div>
+                <span>hello from dashboard</span>
+                <BoardForm />
+            </div>
         );
     }
 };
