@@ -20,11 +20,11 @@ export const REG_START = 'REG_START'
 export const REG_SUCCESS = 'REG_SUCCESS'
 export const REG_FAIL = 'REG_FAIL'
 // board actions
-export const FETCHING = 'FETCHING';
-export const FETCHED = 'FETCHED';
-export const ADD = 'ADD';
-export const UPDATE = 'UPDATE';
-export const ERROR = 'ERROR';
+export const BOARD_FETCHING = 'BOARD_FETCHING';
+export const BOARD_FETCHED = 'BOARD_FETCHED';
+export const BOARD_ADD = 'BOARD_ADD';
+export const BOARD_UPDATE = 'BOARD_UPDATE';
+export const BOARD_ERROR = 'BOARD_ERROR';
 
 // login
 export const login = creds => dispatch => {
@@ -59,15 +59,27 @@ export const register = creds => dispatch => {
     })
 }
 
+// boards
 export const fetchBoards = () => dispatch => {
-    dispatch({ type: FETCHING });
+    dispatch({ type: BOARD_FETCHING });
     axiosWithAuth()
         .get(eGetBoards)
         .then(res => {
-            dispatch({ type: FETCHED, payload: res.data });
+            dispatch({ type: BOARD_FETCHED, payload: res.data });
         })
         .catch(err => {
-            dispatch({ type: ERROR, payload: err });
+            dispatch({ type: BOARD_ERROR, payload: err });
+        });
+};
+
+export const addBoard = (newBoard) => dispatch => {
+    axiosWithAuth()
+        .post(ePostBoards, newBoard)
+        .then(res => {
+            dispatch({ type: BOARD_ADD, payload: res.data });
+        })
+        .catch(err => {
+            dispatch({ type: BOARD_ERROR, payload: err });
         });
 };
 

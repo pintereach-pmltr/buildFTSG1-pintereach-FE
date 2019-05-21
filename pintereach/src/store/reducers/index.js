@@ -42,13 +42,18 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
-    case actionTypes.FETCHING:
+    case actionTypes.BOARD_FETCHING:
       return { ...state, fetching: true };
-    case actionTypes.FETCHED:
+    case actionTypes.BOARD_FETCHED:
       return {
         ...state,
         fetching: false,
         boards: [...state.boards, ...action.payload]
+      };
+    case actionTypes.BOARD_ADD:
+      return {
+        ...state,
+        boards: [...action.payload]
       };
     default:
       return state;
