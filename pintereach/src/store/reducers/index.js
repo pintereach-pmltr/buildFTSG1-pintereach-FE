@@ -6,7 +6,7 @@ const initialState = {
   loggedIn: false,
   error: "",
   registered: false,
-  userId: null
+//   userId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -45,11 +45,11 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.BOARD_FETCHING:
       return { ...state, fetching: true };
-      case actionTypes.SET_ID:
-        return {
-            ...state,
-            userId: action.userId
-        }
+    //   case actionTypes.SET_ID:
+    //     return {
+    //         ...state,
+    //         userId: action.userId
+    //     }
     case actionTypes.BOARD_FETCHED:
       return {
         ...state,

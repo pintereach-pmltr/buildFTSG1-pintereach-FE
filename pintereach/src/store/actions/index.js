@@ -4,20 +4,20 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 // endpoints
 const eLogin = 'https://pintereach0.herokuapp.com/api/auth/login';
 const eRegister = 'https://pintereach0.herokuapp.com/api/auth/register';
-const eGetBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
+// const eGetBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
 const ePostBoards = 'https://pintereach0.herokuapp.com/api/boards/';
 // const eDeleteBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
 // const eGetArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
 // const ePostArticles = 'https://pintereach0.herokuapp.com/api/articles/';
 // const eDeleteArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
 
-const userId = localStorage.getItem('userId');
+// const userId = localStorage.getItem('userId');
 
 // login actions
 export const LOG_START = 'LOG_START'
 export const LOG_SUCCESS = 'LOG_SUCCESS'
 export const LOG_FAIL = 'LOG_FAIL'
-export const SET_ID = 'SET_ID'
+// export const SET_ID = 'SET_ID'
 // register actions
 export const REG_START = 'REG_START'
 export const REG_SUCCESS = 'REG_SUCCESS'
@@ -38,10 +38,9 @@ export const login = creds => dispatch => {
         // debugger;
         console.log(res)
         localStorage.setItem('token', res.data.token);
-        dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
         localStorage.setItem('userId', res.data.id)
-        console.log('[USER ID STORED]', userId)
-        dispatch({ type: SET_ID, userId: res.data.id })
+        dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
+        // dispatch({ type: SET_ID, userId: res.data.id })
     })
     .catch(err => {
         console.log(err);
@@ -66,7 +65,7 @@ export const register = creds => dispatch => {
 }
 
 // boards
-export const fetchBoards = () => dispatch => {
+export const fetchBoards = (userId) => dispatch => {
     dispatch({ type: BOARD_FETCHING });
     axiosWithAuth()
         .get(`https://pintereach0.herokuapp.com/api/boards/${userId}`)

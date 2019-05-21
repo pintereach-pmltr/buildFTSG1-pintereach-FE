@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // redux imports
 import { connect } from 'react-redux';
 // router imports
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 // action imports
 import { login } from '../../store/actions/index';
 

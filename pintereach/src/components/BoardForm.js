@@ -25,11 +25,6 @@ class BoardForm extends Component {
         const { id, board_title, user_id } = this.state;
         let newBoard = {id, board_title, user_id};
         this.props.addBoard(newBoard)
-        this.setState(() => ({
-            id: undefined,
-            board_title: '',
-            user_id: undefined
-        }))
     }
     
     render() {
