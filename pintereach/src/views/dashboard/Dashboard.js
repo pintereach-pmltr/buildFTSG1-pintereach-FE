@@ -9,7 +9,7 @@ import BoardForm from '../../components/BoardForm';
 
 class Dashboard extends Component {
     componentDidMount() {
-        this.props.fetchBoards(this.props.id)
+        this.props.fetchBoards(this.props.userId)
     }
     
     render() {
@@ -17,6 +17,9 @@ class Dashboard extends Component {
             <div>
                 <span>hello from dashboard</span>
                 <BoardForm />
+                {this.props.boards.map(board => {
+                    return <div>{board.board_title}</div>
+                })}
             </div>
         );
     }
@@ -26,7 +29,7 @@ const mapStateToProps = state => {
     return {
         boards: state.boards,
         fetching: state.fetching,
-        id: state.id
+        userId: state.userId
     }
 };
 

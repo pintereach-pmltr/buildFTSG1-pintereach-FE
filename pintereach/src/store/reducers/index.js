@@ -5,7 +5,8 @@ const initialState = {
   boards: [],
   loggedIn: false,
   error: "",
-  registered: false
+  registered: false,
+  userId: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,7 +48,7 @@ const reducer = (state = initialState, action) => {
       case actionTypes.SET_ID:
         return {
             ...state,
-            id: action.id
+            userId: action.userId
         }
     case actionTypes.BOARD_FETCHED:
       return {
