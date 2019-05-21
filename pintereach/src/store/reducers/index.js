@@ -28,20 +28,28 @@ const reducer = (state = initialState, action) => {
         loggedIn: false
       };
     case actionTypes.REG_START:
-    return {
+      return {
         ...state,
         registered: true
-    }
+      };
     case actionTypes.REG_SUCCESS:
-    return {
+      return {
         ...state,
         registered: false
-    }
+      };
     case actionTypes.REG_FAIL:
-    return {
+      return {
         ...state,
         error: action.payload
-    }
+      };
+    case actionTypes.FETCHING:
+      return { ...state, fetching: true };
+    case actionTypes.FETCHED:
+      return {
+        ...state,
+        fetching: false,
+        boards: [...state.boards, ...action.payload]
+      };
     default:
       return state;
   }

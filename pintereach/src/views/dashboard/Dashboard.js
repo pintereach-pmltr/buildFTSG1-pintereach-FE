@@ -1,10 +1,28 @@
 // react imports
-import React from 'react';
+import React, { Component } from 'react';
+// redux imports
+import { connect } from 'react-redux';
+// action imports
+import { fetchBoards } from '../../store/actions/index';
 
-const Dashboard = () => {
-    return (
-        <div>hello from dashboard</div>
-    );
+class Dashboard extends Component {
+    componentDidMount() {
+        this.props.fetchBoards()
+    }
+    
+    render() {
+        console.log('[DASH CHECK]', this.props);
+        return (
+            <div>hello from dashboard</div>
+        );
+    }
 };
 
-export default Dashboard;
+const mapStateToProps = state => {
+    return {
+        boards: state.boards,
+        fetching: state.fetching
+    }
+};
+
+export default connect(mapStateToProps, { fetchBoards })(Dashboard);
