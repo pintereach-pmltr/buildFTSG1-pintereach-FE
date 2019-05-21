@@ -76,6 +76,7 @@ export const fetchBoards = (userId) => dispatch => {
     axiosWithAuth()
         .get(`https://pintereach0.herokuapp.com/api/boards/${userId}`)
         .then(res => {
+            console.log('[BOARDS RES]', res.data);
             dispatch({ type: BOARD_FETCHED, payload: res.data });
         })
         .catch(err => {
@@ -87,6 +88,7 @@ export const addBoard = (newBoard) => dispatch => {
     axiosWithAuth()
         .post(ePostBoards, newBoard)
         .then(res => {
+            console.log('[ADD BOARD RES]', res.data)
             dispatch({ type: BOARD_ADD, payload: res.data });
         })
         .catch(err => {
@@ -100,8 +102,20 @@ export const fetchArticles = (userId) => dispatch => {
     axiosWithAuth()
         .get(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
         .then(res => {
-            console.log('[FETCH ARTICLE RESPONSE]', res.data)
+            console.log('[FETCH ARTICLE RESPONSE]', res)
             dispatch({ type: ARTICLE_FETCHED, payload: res.data });
+        })
+        .catch(err => {
+            dispatch({ type: ARTICLE_ERROR, payload: err });
+        });
+};
+
+export const addArticle = (newArticle) => dispatch => {
+    axiosWithAuth()
+        .post('https://pintereach0.herokuapp.com/api/articles/', newArticle)
+        .then(res => {
+            console.log('[ADD ARTICLE RES]', res)
+            dispatch({ type: ARTICLE_ADD, payload: res.data });
         })
         .catch(err => {
             dispatch({ type: ARTICLE_ERROR, payload: err });

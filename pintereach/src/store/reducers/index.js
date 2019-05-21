@@ -72,7 +72,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ARTICLE_ADD:
       return {
         ...state,
-        boards: [...state.articles,{...action.payload}]
+        articles: [...state.articles,{...action.payload}]
       };
     // return default
     default:

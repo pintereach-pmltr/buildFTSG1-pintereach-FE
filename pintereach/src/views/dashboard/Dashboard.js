@@ -7,17 +7,16 @@ import { fetchBoards, fetchArticles } from '../../store/actions/index';
 // component imports
 import DashList from './DashList';
 import BoardForm from '../../components/BoardForm';
+import ArticleForm from '../../components/ArticleForm';
 
 class Dashboard extends Component {
     componentDidMount() {
-        console.log(['CDM'])
         const userId = localStorage.getItem('userId')
         this.props.fetchBoards(userId);
         this.props.fetchArticles(userId);
     }
     
     render() {
-        console.log('[RENDER]')
         return (
             <div>
                 <span>hello from dashboard</span>
@@ -26,6 +25,10 @@ class Dashboard extends Component {
                     return <div key={board.id}>{board.board_title}</div>
                 })}
                 <DashList />
+                <ArticleForm />
+                {this.props.articles.map(article => {
+                    return <div key={article.id}>{article.article_label}</div>
+                })}
             </div>
         );
     }
