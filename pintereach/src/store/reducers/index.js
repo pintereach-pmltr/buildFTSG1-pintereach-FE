@@ -44,6 +44,11 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.BOARD_FETCHING:
       return { ...state, fetching: true };
+      case actionTypes.SET_ID:
+        return {
+            ...state,
+            id: action.id
+        }
     case actionTypes.BOARD_FETCHED:
       return {
         ...state,

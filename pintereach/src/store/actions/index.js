@@ -15,6 +15,7 @@ const ePostBoards = 'https://pintereach0.herokuapp.com/api/boards/';
 export const LOG_START = 'LOG_START'
 export const LOG_SUCCESS = 'LOG_SUCCESS'
 export const LOG_FAIL = 'LOG_FAIL'
+export const SET_ID = 'SET_ID'
 // register actions
 export const REG_START = 'REG_START'
 export const REG_SUCCESS = 'REG_SUCCESS'
@@ -36,6 +37,7 @@ export const login = creds => dispatch => {
         console.log(res)
         localStorage.setItem('token', res.data.token);
         dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
+        dispatch({ type: SET_ID, id: res.data.id })
     })
     .catch(err => {
         console.log(err);
@@ -60,10 +62,10 @@ export const register = creds => dispatch => {
 }
 
 // boards
-export const fetchBoards = () => dispatch => {
+export const fetchBoards = (id) => dispatch => {
     dispatch({ type: BOARD_FETCHING });
     axiosWithAuth()
-        .get(eGetBoards)
+        .get(`https://pintereach0.herokuapp.com/api/boards/${id}`)
         .then(res => {
             dispatch({ type: BOARD_FETCHED, payload: res.data });
         })

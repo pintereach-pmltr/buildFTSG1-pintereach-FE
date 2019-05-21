@@ -9,11 +9,10 @@ import BoardForm from '../../components/BoardForm';
 
 class Dashboard extends Component {
     componentDidMount() {
-        this.props.fetchBoards()
+        this.props.fetchBoards(this.props.id)
     }
     
     render() {
-        console.log('[DASH CHECK]', this.props.boards);
         return (
             <div>
                 <span>hello from dashboard</span>
@@ -26,7 +25,8 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         boards: state.boards,
-        fetching: state.fetching
+        fetching: state.fetching,
+        id: state.id
     }
 };
 
