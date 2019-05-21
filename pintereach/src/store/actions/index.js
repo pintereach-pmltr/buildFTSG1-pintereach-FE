@@ -28,6 +28,12 @@ export const BOARD_FETCHED = 'BOARD_FETCHED';
 export const BOARD_ADD = 'BOARD_ADD';
 export const BOARD_UPDATE = 'BOARD_UPDATE';
 export const BOARD_ERROR = 'BOARD_ERROR';
+// article actions
+export const ARTICLE_FETCHING = 'ARTICLE_FETCHING';
+export const ARTICLE_FETCHED = 'ARTICLE_FETCHED';
+export const ARTICLE_ADD = 'ARTICLE_ADD';
+export const ARTICLE_UPDATE = 'ARTICLE_UPDATE';
+export const ARTICLE_ERROR = 'ARTICLE_ERROR';
 
 // login
 export const login = creds => dispatch => {
@@ -85,6 +91,20 @@ export const addBoard = (newBoard) => dispatch => {
         })
         .catch(err => {
             dispatch({ type: BOARD_ERROR, payload: err });
+        });
+};
+
+// articles
+export const fetchArticles = (userId) => dispatch => {
+    dispatch({ type: ARTICLE_FETCHING });
+    axiosWithAuth()
+        .get(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
+        .then(res => {
+            console.log('[FETCH ARTICLE RESPONSE]', res.data)
+            dispatch({ type: ARTICLE_FETCHED, payload: res.data });
+        })
+        .catch(err => {
+            dispatch({ type: ARTICLE_ERROR, payload: err });
         });
 };
 

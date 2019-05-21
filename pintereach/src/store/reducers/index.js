@@ -3,6 +3,7 @@ import * as actionTypes from "../actions";
 
 const initialState = {
   boards: [],
+  articles: [],
   loggedIn: false,
   error: "",
   registered: false,
@@ -11,6 +12,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    // login reducers
     case actionTypes.LOG_START:
       return {
         ...state,
@@ -28,6 +30,7 @@ const reducer = (state = initialState, action) => {
         error: action.payload,
         loggedIn: false
       };
+    // register reducers
     case actionTypes.REG_START:
       return {
         ...state,
@@ -43,13 +46,9 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
+    // board reducers
     case actionTypes.BOARD_FETCHING:
       return { ...state, fetching: true };
-    //   case actionTypes.SET_ID:
-    //     return {
-    //         ...state,
-    //         userId: action.userId
-    //     }
     case actionTypes.BOARD_FETCHED:
       return {
         ...state,
@@ -61,6 +60,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         boards: [...state.boards,{...action.payload}]
       };
+    // article reducers
+    case actionTypes.ARTICLE_FETCHING:
+      return { ...state, fetching: true };
+    case actionTypes.ARTICLE_FETCHED:
+      return {
+        ...state,
+        fetching: false,
+        articles: [...state.articles, ...action.payload]
+      };
+    case actionTypes.ARTICLE_ADD:
+      return {
+        ...state,
+        boards: [...state.articles,{...action.payload}]
+      };
+    // return default
     default:
       return state;
   }
