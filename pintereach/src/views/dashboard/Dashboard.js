@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 // redux imports
 import { connect } from 'react-redux';
+// react router imports
+import { Route } from 'react-router-dom';
 // action imports
 import { fetchBoards, fetchArticles } from '../../store/actions/index';
 // component imports
@@ -11,6 +13,7 @@ import Profile from '../../components/Profile';
 import DashNav from '../../components/DashNav';
 import BoardForm from '../../components/BoardForm';
 import ArticleForm from '../../components/ArticleForm';
+import Boards from './Boards';
 // styled components imports
 import styled from 'styled-components';
 
@@ -35,7 +38,7 @@ class Dashboard extends Component {
                 <Navigation />
                 <Profile />
                 <DashNav />
-
+                <Route path='/dashboard/boards' component={Boards} />
                 
                 
                 
