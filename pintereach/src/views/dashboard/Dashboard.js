@@ -8,6 +8,7 @@ import { fetchBoards, fetchArticles } from '../../store/actions/index';
 import DashList from './DashList';
 import Navigation from '../../components/Navigation';
 import Profile from '../../components/Profile';
+import DashNav from '../../components/DashNav';
 import BoardForm from '../../components/BoardForm';
 import ArticleForm from '../../components/ArticleForm';
 
@@ -24,6 +25,7 @@ class Dashboard extends Component {
             <div>
                 <Navigation />
                 <Profile />
+                <DashNav />
                 <span>hello from dashboard</span>
                 <BoardForm />
                 {this.props.boards.map(board => {
