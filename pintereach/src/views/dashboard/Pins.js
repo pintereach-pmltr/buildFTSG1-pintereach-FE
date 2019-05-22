@@ -17,7 +17,6 @@ const PinsContainer = styled.div`
 const PinsContent = styled.div`
     width: 1200px;
     margin: 0 auto;
-    background-color: red;
 `
 
 class Pins extends Component {

@@ -63,7 +63,7 @@ export const register = creds => dispatch => {
         console.log(res)
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('userId', res.data.id);
-        dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
+        dispatch({ type: REG_SUCCESS, payload: res.data.payload })
     })
     .catch(err => {
         console.log(err) 

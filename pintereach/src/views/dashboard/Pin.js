@@ -20,6 +20,10 @@ const PinContent = styled.div`
     background-color: #8D99AE;
 `
 
+const DeleteButton = styled.button`
+    justify-self: flex-end;
+`
+
 class Pin extends Component {
     constructor(props) {
         super(props);
@@ -35,6 +39,7 @@ class Pin extends Component {
                     <span>{this.props.name}</span>
                     <span>{this.props.url}</span>
                     <span>{this.props.boardId}</span>
+                    <DeleteButton>Delete</DeleteButton>
                 </PinContent>
             </PinContainer>
         );
