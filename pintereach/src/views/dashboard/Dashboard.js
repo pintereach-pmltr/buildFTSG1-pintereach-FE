@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchBoards, fetchArticles } from '../../store/actions/index';
 // component imports
 import DashList from './DashList';
+import Navigation from '../../components/Navigation';
 import BoardForm from '../../components/BoardForm';
 import ArticleForm from '../../components/ArticleForm';
 
@@ -20,6 +21,7 @@ class Dashboard extends Component {
     render() {
         return (
             <div>
+                <Navigation />
                 <span>hello from dashboard</span>
                 <BoardForm />
                 {this.props.boards.map(board => {
