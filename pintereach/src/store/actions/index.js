@@ -98,10 +98,10 @@ export const addBoard = (newBoard) => dispatch => {
 };
 
 // articles
-export const fetchArticles = (boardId) => dispatch => {
+export const fetchArticles = (userId) => dispatch => {
     dispatch({ type: ARTICLE_FETCHING });
     axiosWithAuth()
-        .get(`https://pintereach0.herokuapp.com/api/articles/${boardId}`)
+        .get(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
         .then(res => {
             console.log('[FETCH ARTICLE RESPONSE]', res)
             dispatch({ type: ARTICLE_FETCHED, payload: res.data });

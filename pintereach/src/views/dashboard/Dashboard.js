@@ -15,7 +15,7 @@ class Dashboard extends Component {
         const userId = localStorage.getItem('userId')
         const boardId = localStorage.getItem('boardId')
         this.props.fetchBoards(userId);
-        this.props.fetchArticles(boardId);
+        this.props.fetchArticles(userId);
     }
     
     render() {
