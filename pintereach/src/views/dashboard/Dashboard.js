@@ -11,6 +11,15 @@ import Profile from '../../components/Profile';
 import DashNav from '../../components/DashNav';
 import BoardForm from '../../components/BoardForm';
 import ArticleForm from '../../components/ArticleForm';
+// styled components imports
+import styled from 'styled-components';
+
+// styled components
+const DataCheck = styled.div`
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 25rem;
+`
 
 class Dashboard extends Component {
     componentDidMount() {
@@ -26,7 +35,13 @@ class Dashboard extends Component {
                 <Navigation />
                 <Profile />
                 <DashNav />
-                <span>hello from dashboard</span>
+
+                
+                
+                
+                
+                <DataCheck>
+                <span>-- DASHBOARD AND DATA FUNCTIONALITY CHECKS --</span>
                 <BoardForm />
                 {this.props.boards.map(board => {
                     return <div key={board.id}>{board.board_title}</div>
@@ -36,6 +51,7 @@ class Dashboard extends Component {
                 {this.props.articles.map(article => {
                     return <div key={article.id}>{article.article_label}</div>
                 })}
+                </DataCheck>
             </div>
         );
     }
