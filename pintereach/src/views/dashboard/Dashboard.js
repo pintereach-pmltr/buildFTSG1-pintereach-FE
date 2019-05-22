@@ -14,6 +14,7 @@ import DashNav from '../../components/DashNav';
 import BoardForm from '../../components/BoardForm';
 import ArticleForm from '../../components/ArticleForm';
 import Boards from './Boards';
+import Pins from './Pins';
 // styled components imports
 import styled from 'styled-components';
 
@@ -27,7 +28,7 @@ const DataCheck = styled.div`
 class Dashboard extends Component {
     componentDidMount() {
         const userId = localStorage.getItem('userId')
-        const boardId = localStorage.getItem('boardId')
+        // const boardId = localStorage.getItem('boardId')
         this.props.fetchBoards(userId);
         this.props.fetchArticles(userId);
     }
@@ -39,6 +40,7 @@ class Dashboard extends Component {
                 <Profile />
                 <DashNav />
                 <Route path='/dashboard/boards' component={Boards} />
+                <Route path='/dashboard/pins' component={Pins} />
                 
                 
                 

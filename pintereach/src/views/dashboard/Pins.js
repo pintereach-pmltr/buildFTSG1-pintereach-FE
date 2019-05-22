@@ -1,12 +1,12 @@
 // react imports
 import React, { Component } from 'react';
 
-class Boards extends Component {
+class Pins extends Component {
     render() {
         return (
-            <div>hello from boards</div>
+            <div>hello from pins</div>
         );
     }
 };
 
-export default Boards;
+export default Pins;

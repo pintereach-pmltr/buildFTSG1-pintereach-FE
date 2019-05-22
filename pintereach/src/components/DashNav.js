@@ -37,8 +37,9 @@ const DashNav = () => {
     return (
         <DashNavContainer>
             <DashNavContent>
+                <NavLink to='/dashboard'><DashNavView>Dashboard</DashNavView></NavLink>
                 <NavLink to='/dashboard/boards'><DashNavView>Boards</DashNavView></NavLink>
-                <NavLink to='/dashboard/articles'><DashNavView>Articles</DashNavView></NavLink>
+                <NavLink to='/dashboard/pins'><DashNavView>Pins</DashNavView></NavLink>
             </DashNavContent>
         </DashNavContainer>
     );
