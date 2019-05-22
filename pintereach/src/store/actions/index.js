@@ -44,7 +44,7 @@ export const login = creds => dispatch => {
         // debugger;
         console.log(res)
         localStorage.setItem('token', res.data.token);
-        localStorage.setItem('userId', res.data.id)
+        localStorage.setItem('userId', res.data.id);
         dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
         // dispatch({ type: SET_ID, userId: res.data.id })
     })
@@ -62,6 +62,7 @@ export const register = creds => dispatch => {
     .then(res => {
         console.log(res)
         localStorage.setItem('token', res.data.token)
+        localStorage.setItem('userId', res.data.id);
         dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
     })
     .catch(err => {
@@ -88,7 +89,7 @@ export const addBoard = (newBoard) => dispatch => {
     axiosWithAuth()
         .post(ePostBoards, newBoard)
         .then(res => {
-            console.log('[ADD BOARD RES]', res.data)
+            localStorage.setItem('boardId', res.data.board_id)
             dispatch({ type: BOARD_ADD, payload: res.data });
         })
         .catch(err => {
@@ -97,10 +98,10 @@ export const addBoard = (newBoard) => dispatch => {
 };
 
 // articles
-export const fetchArticles = (userId) => dispatch => {
+export const fetchArticles = (boardId) => dispatch => {
     dispatch({ type: ARTICLE_FETCHING });
     axiosWithAuth()
-        .get(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
+        .get(`https://pintereach0.herokuapp.com/api/articles/${boardId}`)
         .then(res => {
             console.log('[FETCH ARTICLE RESPONSE]', res)
             dispatch({ type: ARTICLE_FETCHED, payload: res.data });

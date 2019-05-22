@@ -12,8 +12,9 @@ import ArticleForm from '../../components/ArticleForm';
 class Dashboard extends Component {
     componentDidMount() {
         const userId = localStorage.getItem('userId')
+        const boardId = localStorage.getItem('boardId')
         this.props.fetchBoards(userId);
-        this.props.fetchArticles(userId);
+        this.props.fetchArticles(boardId);
     }
     
     render() {
