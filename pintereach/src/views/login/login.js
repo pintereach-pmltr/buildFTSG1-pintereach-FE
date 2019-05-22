@@ -1,13 +1,13 @@
 // react imports
-import React, { Component } from 'react';
+import React, { Component } from './node_modules/react';
 // redux imports
-import { connect } from 'react-redux';
+import { connect } from './node_modules/react-redux';
 // react router imports
-import { NavLink } from 'react-router-dom';
+import { NavLink } from './node_modules/react-router-dom';
 // action imports
 import { login } from '../../store/actions/index';
 // styled components imports
-import styled from 'styled-components';
+import styled from './node_modules/styled-components';
 
 // styled components
 const LoginContainer = styled.div`

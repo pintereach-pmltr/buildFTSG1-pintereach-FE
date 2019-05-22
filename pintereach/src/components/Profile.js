@@ -8,7 +8,7 @@ import styled from 'styled-components';
 // profile structure
 const ProfileContainer = styled.div`
     width: 100%;
-    margin: 2rem 0;
+    margin: 5rem 0;
 `
 
 const ProfileContent = styled.div`

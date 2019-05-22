@@ -13,7 +13,7 @@ const NavFullWidth = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    background-color: #2B2D42;
+    background-color: #EF233C;
 `
 
 const NavContainer = styled.div`

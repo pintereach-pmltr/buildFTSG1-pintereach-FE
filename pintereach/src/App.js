@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 // component imports
-import Login from './views/login/Login';
+import Login from './views/login/Login.js';
 import Register from './views/register/Register';
 import Dashboard from './views/dashboard/Dashboard';
 
