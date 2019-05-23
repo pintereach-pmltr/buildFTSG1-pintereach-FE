@@ -46,6 +46,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.payload
       };
+    // testing erica new endpoint
+    // case actionTypes.ALL_FETCHING:
+    //   return { ...state, fetching: true };
+    // case actionTypes.ALL_FETCHED:
+    //   return {
+    //     ...state,
+    //     fetching: false,
+    //     boards: [...state.boards, ...action.payload]
+    //   };
+    // end testing erica new endpoint
     // board reducers
     case actionTypes.BOARD_FETCHING:
       return { ...state, fetching: true };

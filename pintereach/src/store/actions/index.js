@@ -5,7 +5,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 const eLogin = 'https://pintereach0.herokuapp.com/api/auth/login';
 const eRegister = 'https://pintereach0.herokuapp.com/api/auth/register';
 // const eGetBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
-const ePostBoards = 'https://pintereach0.herokuapp.com/api/boards/';
+// const ePostBoards = 'https://pintereach0.herokuapp.com/api/boards/';
 // const eDeleteBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
 // const eGetArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
 // const ePostArticles = 'https://pintereach0.herokuapp.com/api/articles/';
@@ -72,6 +72,27 @@ export const register = creds => dispatch => {
     })
 }
 
+// testing erica's combined endpoint
+
+// export const ALL_FETCHING = 'ALL_FETCHING';
+// export const ALL_FETCHED = 'ALL_FETCHED';
+// export const ALL_ERROR = 'ALL_ERROR';
+
+// export const fetchAll = (userId) => dispatch => {
+//     dispatch({ type: ALL_FETCHING });
+//     axiosWithAuth()
+//         .get(`https://pintereach0.herokuapp.com/api/boards/${userId}/all`)
+//         .then(res => {
+//             console.log('[ALL RES]', res);
+//             dispatch({ type: ALL_FETCHED, payload: res.data.boards });
+//         })
+//         .catch(err => {
+//             dispatch({ type: ALL_ERROR, payload: err });
+//         });
+// };
+
+// end erica endpoint test
+
 // boards
 export const fetchBoards = (userId) => dispatch => {
     dispatch({ type: BOARD_FETCHING });
@@ -88,9 +109,8 @@ export const fetchBoards = (userId) => dispatch => {
 
 export const addBoard = (newBoard) => dispatch => {
     axiosWithAuth()
-        .post(ePostBoards, newBoard)
+        .post('https://pintereach0.herokuapp.com/api/boards/', newBoard)
         .then(res => {
-            localStorage.setItem('boardId', res.data.board_id)
             dispatch({ type: BOARD_ADD, payload: res.data });
         })
         .catch(err => {

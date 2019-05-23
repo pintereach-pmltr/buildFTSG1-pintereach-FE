@@ -47,7 +47,7 @@ class Pin extends Component {
             <PinContainer>
                 <PinContent>
                     <span>{this.props.name}</span>
-                    <a href="#">{this.props.url}</a>
+                    <span>{this.props.url}</span>
                     <span>{this.props.boardId}</span>
                     <DeleteButton onClick={this.deleteArticle}>Delete</DeleteButton>
                 </PinContent>

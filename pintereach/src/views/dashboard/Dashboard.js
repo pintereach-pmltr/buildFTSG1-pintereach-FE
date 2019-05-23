@@ -15,7 +15,6 @@ import BoardForm from '../../components/BoardForm';
 import ArticleForm from '../../components/ArticleForm';
 import Boards from './Boards';
 import Pins from './Pins';
-import GlobalTest from '../../components/GlobalTest';
 // styled components imports
 import styled from 'styled-components';
 
@@ -30,8 +29,9 @@ class Dashboard extends Component {
     componentDidMount() {
         const userId = localStorage.getItem('userId')
         // const boardId = localStorage.getItem('boardId')
-        // this.props.fetchBoards(userId);
+        this.props.fetchBoards(userId);
         this.props.fetchArticles(userId);
+        // this.props.fetchAll(userId);
     }
     
     render() {
@@ -42,7 +42,7 @@ class Dashboard extends Component {
                 <DashNav />
                 <Route path='/dashboard/boards' component={Boards} />
                 <Route path='/dashboard/pins' component={Pins} />
-                <GlobalTest />
+                
                 
                 
                 
