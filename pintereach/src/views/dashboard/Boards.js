@@ -52,8 +52,8 @@ class Boards extends Component {
                         return (
                             <Board>
                                 <BoardTitle>
-                                <NavLink to={`/dashboard/${board.id}`}>{board.board_title}</NavLink>
-                                <Route path={`/dashboard/board/${board.id}`} component={BoardView} />
+                                <NavLink to={`/dashboard/board/${board.id}`}>{board.board_title}</NavLink>
+                                
                                 </BoardTitle>
                             </Board>
                         );

@@ -46,7 +46,6 @@ export const getAll = userId => dispatch => {
     axiosWithAuth()
     .get(`https://pintereach0.herokuapp.com/api/boards/${userId}/all`)
     .then(res => {
-        console.log('[GET ALL STATUS]',res)
         dispatch({ type: GET_ALL_SUCCESS, payload: res.data})
     })
     .catch(err => {

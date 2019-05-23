@@ -15,6 +15,7 @@ import BoardForm from '../../components/BoardForm';
 import ArticleForm from '../../components/ArticleForm';
 import Boards from './Boards';
 import Pins from './Pins';
+import BoardView from './BoardView';
 // styled components imports
 import styled from 'styled-components';
 
@@ -35,7 +36,6 @@ class Dashboard extends Component {
     }
     
     render() {
-        console.log('[DASHBOARD ALL CHECK]', JSON.stringify(this.props.boards));
         return (
             <div>
                 <Navigation />
@@ -43,6 +43,7 @@ class Dashboard extends Component {
                 <DashNav />
                 <Route path='/dashboard/boards' component={Boards} />
                 <Route path='/dashboard/pins' component={Pins} />
+                <Route path={`/dashboard/board/:id`} component={BoardView} />
                 
                 
                 

@@ -7,7 +7,6 @@ import PrivateRoute from './utils/PrivateRoute';
 import Login from './views/login/Login.js';
 import Register from './views/register/Register';
 import Dashboard from './views/dashboard/Dashboard';
-import BoardView from './views/dashboard/BoardView';
 
 class App extends Component {
   render() {
@@ -17,6 +16,7 @@ class App extends Component {
         <Route path='/register' component={Register} />
         <PrivateRoute path='/dashboard' component={Dashboard} />
         {/* <Route path={`/dashboard/:id`} render={(props) => <BoardView {...props}/>} /> */}
+        
       </div>
     );
   }
