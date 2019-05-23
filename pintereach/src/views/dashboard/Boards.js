@@ -2,6 +2,10 @@
 import React, { Component } from 'react';
 // redux imports
 import { connect } from 'react-redux';
+// react router imports
+import { Route, NavLink } from 'react-router-dom';
+// component imports
+import BoardView from './BoardView';
 // styled components imports
 import styled from 'styled-components';
 
@@ -47,7 +51,10 @@ class Boards extends Component {
                     {this.props.boards.map(board => {
                         return (
                             <Board>
-                                <BoardTitle>{board.board_title}</BoardTitle>
+                                <BoardTitle>
+                                <NavLink to={`/dashboard/${board.id}`}>{board.board_title}</NavLink>
+                                <Route path={`/dashboard/board/${board.id}`} component={BoardView} />
+                                </BoardTitle>
                             </Board>
                         );
                     })}
