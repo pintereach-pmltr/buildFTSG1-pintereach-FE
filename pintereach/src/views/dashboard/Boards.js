@@ -41,7 +41,6 @@ const BoardTitle = styled.h2`
 
 class Boards extends Component {
     render() {
-        console.log('[STATE CHECK]',this.props.state);
         return (
             <BoardsContainer>
                 <BoardsContent>

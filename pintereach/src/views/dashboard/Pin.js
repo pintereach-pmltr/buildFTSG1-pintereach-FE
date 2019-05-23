@@ -1,5 +1,9 @@
 // react imports
 import React, { Component } from 'react';
+// redux imports
+import { connect } from 'react-redux';
+// action imports
+import { deleteArticle } from '../../store/actions/index'; 
 // styled components imports
 import styled from 'styled-components';
 
@@ -31,19 +35,25 @@ class Pin extends Component {
 
         }
     }
+
+    deleteArticle = event => {    
+        // let id = this.props.id;
+        const userId = localStorage.getItem('userId');
+        this.props.deleteArticle(userId)
+    }
     
     render() {
         return (
             <PinContainer>
                 <PinContent>
                     <span>{this.props.name}</span>
-                    <span>{this.props.url}</span>
+                    <a href="#">{this.props.url}</a>
                     <span>{this.props.boardId}</span>
-                    <DeleteButton>Delete</DeleteButton>
+                    <DeleteButton onClick={this.deleteArticle}>Delete</DeleteButton>
                 </PinContent>
             </PinContainer>
         );
     }
 };
 
-export default Pin;
+export default connect(null, { deleteArticle })(Pin);

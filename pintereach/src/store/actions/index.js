@@ -32,6 +32,7 @@ export const BOARD_ERROR = 'BOARD_ERROR';
 export const ARTICLE_FETCHING = 'ARTICLE_FETCHING';
 export const ARTICLE_FETCHED = 'ARTICLE_FETCHED';
 export const ARTICLE_ADD = 'ARTICLE_ADD';
+export const ARTICLE_DELETE = 'ARTICLE_DELETE';
 export const ARTICLE_UPDATE = 'ARTICLE_UPDATE';
 export const ARTICLE_ERROR = 'ARTICLE_ERROR';
 
@@ -103,7 +104,7 @@ export const fetchArticles = (userId) => dispatch => {
     axiosWithAuth()
         .get(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
         .then(res => {
-            console.log('[FETCH ARTICLE RESPONSE]', res)
+            console.log('[ARTICLE FETCH]', res);
             dispatch({ type: ARTICLE_FETCHED, payload: res.data });
         })
         .catch(err => {
@@ -115,8 +116,19 @@ export const addArticle = (newArticle) => dispatch => {
     axiosWithAuth()
         .post('https://pintereach0.herokuapp.com/api/articles/', newArticle)
         .then(res => {
-            console.log('[ADD ARTICLE RES]', res)
             dispatch({ type: ARTICLE_ADD, payload: res.data });
+        })
+        .catch(err => {
+            dispatch({ type: ARTICLE_ERROR, payload: err });
+        });
+};
+
+export const deleteArticle = (userId, pinId) => dispatch => {
+    axiosWithAuth()
+        .delete(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
+        .then(res => {
+            console.log('[DELETE PAYLOAD CHECK]', res);
+            dispatch({ type: ARTICLE_DELETE, payload: res.data });
         })
         .catch(err => {
             dispatch({ type: ARTICLE_ERROR, payload: err });

@@ -74,6 +74,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         articles: [...state.articles,{...action.payload}]
       };
+    case actionTypes.ARTICLE_DELETE:
+      return {
+          ...state,
+          articles: [ ...action.payload]
+      };
     // return default
     default:
       return state;

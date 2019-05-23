@@ -21,7 +21,6 @@ const PinsContent = styled.div`
 
 class Pins extends Component {
     render() {
-        console.log('[STATECHECK]', this.props.pins);
         return (
             <PinsContainer>
                 <PinsContent>
