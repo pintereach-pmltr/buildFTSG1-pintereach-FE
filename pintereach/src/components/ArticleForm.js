@@ -23,9 +23,10 @@ class ArticleForm extends Component {
 
     addArticle = e => {
         e.preventDefault();
-        const { article_label, url, board_name } = this.state;
-        const board_id = localStorage.getItem('userId');
+        const { article_label, url, board_id, board_name } = this.state;
+        // const board_id = localStorage.getItem('userId');
         let newArticle = {article_label, url, board_id, board_name};
+        console.log('[STATE CHECK]', this.state);
         this.props.addArticle(newArticle)
     }
     
@@ -51,10 +52,10 @@ class ArticleForm extends Component {
                     value={this.state.url} 
                     onChange={this.changeHandler} />
 
-                    <input name="board_name" 
+                    <input name="board_id" 
                     type="text"
                     placeholder="board id" 
-                    value={this.state.board_name} 
+                    value={this.state.board_id} 
                     onChange={this.changeHandler} />
 
                     <input type="submit" value="submit" />

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // redux imports
 import { connect } from 'react-redux';
 // action imports
-import { deleteArticle } from '../../store/actions/index'; 
+ 
 // styled components imports
 import styled from 'styled-components';
 
@@ -49,11 +49,11 @@ class Pin extends Component {
                     <span>{this.props.name}</span>
                     <span>{this.props.url}</span>
                     <span>{this.props.boardId}</span>
-                    <DeleteButton onClick={this.deleteArticle}>Delete</DeleteButton>
+                    <DeleteButton>Delete</DeleteButton>
                 </PinContent>
             </PinContainer>
         );
     }
 };
 
-export default connect(null, { deleteArticle })(Pin);
+export default connect(null, { })(Pin);

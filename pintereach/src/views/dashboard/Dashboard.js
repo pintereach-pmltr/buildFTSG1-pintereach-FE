@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // react router imports
 import { Route } from 'react-router-dom';
 // action imports
-import { fetchBoards, fetchArticles } from '../../store/actions/index';
+import { getBoards, getArticles, getAll } from '../../store/actions/index';
 // component imports
 import DashList from './DashList';
 import Navigation from '../../components/Navigation';
@@ -29,12 +29,13 @@ class Dashboard extends Component {
     componentDidMount() {
         const userId = localStorage.getItem('userId')
         // const boardId = localStorage.getItem('boardId')
-        this.props.fetchBoards(userId);
-        this.props.fetchArticles(userId);
-        // this.props.fetchAll(userId);
+        // this.props.getBoards(userId);
+        // this.props.getArticles(userId);
+        this.props.getAll(userId);
     }
     
     render() {
+        console.log('[DASHBOARD ALL CHECK]', JSON.stringify(this.props.boards));
         return (
             <div>
                 <Navigation />
@@ -51,7 +52,7 @@ class Dashboard extends Component {
                 <span>-- DASHBOARD AND DATA FUNCTIONALITY CHECKS --</span>
                 <BoardForm />
                 {this.props.boards.map(board => {
-                    return <div key={board.id}>{board.board_title}</div>
+                     return <div>{board.board_title}</div>
                 })}
                 <DashList />
                 <ArticleForm />
@@ -72,4 +73,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, { fetchBoards, fetchArticles })(Dashboard);
+export default connect(mapStateToProps, { getBoards, getArticles, getAll })(Dashboard);

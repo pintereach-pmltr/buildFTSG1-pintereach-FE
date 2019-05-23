@@ -1,95 +1,159 @@
-import * as actionTypes from "../actions";
-
+// import actiontypes
+import * as actionTypes from '../actions/index';
 
 const initialState = {
   boards: [],
   articles: [],
-  loggedIn: false,
-  error: "",
-  registered: false,
-//   userId: null
+  // fetchingArticles: false,
+  // fetchingBoards: false,
+  // isLoggingIn: false,
+  // error: "",
+  // postingArticles: false,
+  // isRegistering: false,
+  // isLoggingOutl: false,
+  // postingBoards: false,
+  // user_id: localStorage.getItem('user_id'),
+  // deletingBoard: false
 };
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // login reducers
     case actionTypes.LOG_START:
       return {
         ...state,
-        loggedIn: true,
+        isLoggingIn: true,
         error: ""
       };
     case actionTypes.LOG_SUCCESS:
       return {
         ...state,
-        loggedIn: false
+        isLoggingIn: false
       };
     case actionTypes.LOG_FAIL:
       return {
         ...state,
         error: action.payload,
-        loggedIn: false
+        isLoggingIn: false
       };
-    // register reducers
     case actionTypes.REG_START:
       return {
         ...state,
-        registered: true
+        isRegistering: true
       };
     case actionTypes.REG_SUCCESS:
       return {
         ...state,
-        registered: false
+        isRegistering: false
       };
     case actionTypes.REG_FAIL:
       return {
         ...state,
         error: action.payload
       };
-    // testing erica new endpoint
-    // case actionTypes.ALL_FETCHING:
-    //   return { ...state, fetching: true };
-    // case actionTypes.ALL_FETCHED:
-    //   return {
-    //     ...state,
-    //     fetching: false,
-    //     boards: [...state.boards, ...action.payload]
-    //   };
-    // end testing erica new endpoint
-    // board reducers
-    case actionTypes.BOARD_FETCHING:
-      return { ...state, fetching: true };
-    case actionTypes.BOARD_FETCHED:
-      return {
-        ...state,
-        fetching: false,
-        boards: [...state.boards, ...action.payload]
-      };
-    case actionTypes.BOARD_ADD:
-      return {
-        ...state,
-        boards: [...state.boards,{...action.payload}]
-      };
-    // article reducers
-    case actionTypes.ARTICLE_FETCHING:
-      return { ...state, fetching: true };
-    case actionTypes.ARTICLE_FETCHED:
-      return {
-        ...state,
-        fetching: false,
-        articles: [...state.articles, ...action.payload]
-      };
-    case actionTypes.ARTICLE_ADD:
-      return {
-        ...state,
-        articles: [...state.articles,{...action.payload}]
-      };
-    case actionTypes.ARTICLE_DELETE:
+      case actionTypes.LOG_OUT:
       return {
           ...state,
-          articles: [ ...action.payload]
-      };
-    // return default
+          isLoggingOut: true
+      }
+      // test erica get all 
+      case actionTypes.GET_ALL_START: 
+      return {
+          ...state,
+          fetchingBoards: true
+      }
+      case actionTypes.GET_ALL_SUCCESS:
+      return {
+          ...state,
+          fetchingBoards: false,
+          boards: action.payload.boards
+      }
+      case actionTypes.GET_ALL_FAIL:
+      return {
+          ...state,
+          error: action.payload
+      }
+      // end test erica get all
+      case actionTypes.GET_BOARDS_START: 
+      return {
+          ...state,
+          fetchingBoards: true
+      }
+      case actionTypes.GET_BOARDS_SUCCESS:
+      return {
+          ...state,
+          fetchingBoards: false,
+          boards: action.payload
+      }
+      case actionTypes.GET_BOARDS_FAIL:
+      return {
+          ...state,
+          error: action.payload
+      }
+      case actionTypes.ADD_BOARDS_START:
+      return {
+          ...state,
+          postingBoards: true,
+      }
+      case actionTypes.ADD_BOARDS_SUCCESS:
+      return {
+          ...state,
+          postingBoards: false,
+          boards: [...state.boards, {...action.payload}]
+      }
+      case actionTypes.ADD_BOARDS_FAIL:
+      return {
+          ...state,
+          error: action.payload
+      }
+      case actionTypes.GET_ARTICLES_START:
+      return {
+          ...state,
+          fetchingArticles: true
+      }
+      case actionTypes.GET_ARTICLES_SUCCESS:
+      return {
+          ...state, 
+          fetchingArticles: false,
+          articles: action.payload
+      }
+      case actionTypes.GET_ARTICLES_FAIL:
+      return {
+          ...state,
+          error: action.payload
+      }
+      case actionTypes.ADD_ARTICLES_START:
+      return {
+          ...state,
+          postingArticles: true
+      }
+      case actionTypes.ADD_ARTICLES_SUCCESS:
+      return {
+          ...state,
+          postingArticles: false,
+          articles: [...state.articles, {...action.payload}]
+      }
+      case actionTypes.ADD_ARTICLES_FAIL:
+      return {
+          ...state,
+          error: action.payload
+      }
+      case actionTypes.DELETE_BOARD_START:
+      return {
+          ...state,
+          deletingBoard: true
+      }
+      case actionTypes.DELETE_BOARD_SUCCESS:
+      return {
+          ...state,
+          deletingBoard: false,
+          boards: [...state.articles, {...action.payload}]
+      }
+      case actionTypes.DELETE_BOARD_FAIL:
+      return {
+          ...state,
+          error: action.payload
+      }
     default:
       return state;
   }

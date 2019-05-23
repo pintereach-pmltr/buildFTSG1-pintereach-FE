@@ -1,53 +1,72 @@
+// import axios
 import axios from 'axios';
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { axiosWithAuth }from '../../utils/axiosWithAuth';
 
-// endpoints
-const eLogin = 'https://pintereach0.herokuapp.com/api/auth/login';
-const eRegister = 'https://pintereach0.herokuapp.com/api/auth/register';
-// const eGetBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
-// const ePostBoards = 'https://pintereach0.herokuapp.com/api/boards/';
-// const eDeleteBoards = 'https://pintereach0.herokuapp.com/api/boards/:id';
-// const eGetArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
-// const ePostArticles = 'https://pintereach0.herokuapp.com/api/articles/';
-// const eDeleteArticles = 'https://pintereach0.herokuapp.com/api/articles/:id';
+// action exports
 
-// const userId = localStorage.getItem('userId');
-
-// login actions
+// login exports
 export const LOG_START = 'LOG_START'
 export const LOG_SUCCESS = 'LOG_SUCCESS'
 export const LOG_FAIL = 'LOG_FAIL'
-// export const SET_ID = 'SET_ID'
-// register actions
+// register exports
 export const REG_START = 'REG_START'
 export const REG_SUCCESS = 'REG_SUCCESS'
 export const REG_FAIL = 'REG_FAIL'
-// board actions
-export const BOARD_FETCHING = 'BOARD_FETCHING';
-export const BOARD_FETCHED = 'BOARD_FETCHED';
-export const BOARD_ADD = 'BOARD_ADD';
-export const BOARD_UPDATE = 'BOARD_UPDATE';
-export const BOARD_ERROR = 'BOARD_ERROR';
-// article actions
-export const ARTICLE_FETCHING = 'ARTICLE_FETCHING';
-export const ARTICLE_FETCHED = 'ARTICLE_FETCHED';
-export const ARTICLE_ADD = 'ARTICLE_ADD';
-export const ARTICLE_DELETE = 'ARTICLE_DELETE';
-export const ARTICLE_UPDATE = 'ARTICLE_UPDATE';
-export const ARTICLE_ERROR = 'ARTICLE_ERROR';
+// log out exports
+export const LOG_OUT = 'LOG_OUT'
+// get boards exports
+export const GET_BOARDS_START = 'GET_BOARDS_START'
+export const GET_BOARDS_SUCCESS= 'GET_BOARDS_SUCCESS'
+export const GET_BOARDS_FAIL= 'GET_BOARDS_FAIL'
+// add boards exports
+export const ADD_BOARDS_START = 'ADD_BOARDS_START'
+export const ADD_BOARDS_SUCCESS = 'ADD_BOARDS_SUCCESS'
+export const ADD_BOARDS_FAIL = 'ADD_BOARDS_FAIL'
+// get articles exports
+export const GET_ARTICLES_START = 'GET_ARTICLES_START'
+export const GET_ARTICLES_SUCCESS = 'GET_ARTICLES_SUCCESS'
+export const GET_ARTICLES_FAIL = 'GET_ARTICLES_FAIL'
+// add articles exports
+export const ADD_ARTICLES_START = 'ADD_ARTICLES_START'
+export const ADD_ARTICLES_SUCCESS = 'ADD_ARTICLES_SUCCESS'
+export const ADD_ARTICLES_FAIL = 'ADD_ARTICLES_FAIL'
+// delete boards exports
+export const DELETE_BOARD_START = 'DELETE_BOARD_START'
+export const DELETE_BOARD_SUCCESS = 'DELETE_BOARD_SUCCESS'
+export const DELETE_BOARD_FAIL = 'DELETE_BOARD_FAIL'
 
-// login
+
+// TEST ERICA GET ALL
+export const GET_ALL_START = 'GET_ALL_START'
+export const GET_ALL_SUCCESS= 'GET_ALL_SUCCESS'
+export const GET_ALL_FAIL= 'GET_ALL_FAIL'
+
+export const getAll = userId => dispatch => {
+    dispatch({ type: GET_ALL_START })
+    axiosWithAuth()
+    .get(`https://pintereach0.herokuapp.com/api/boards/${userId}/all`)
+    .then(res => {
+        console.log('[GET ALL STATUS]',res)
+        dispatch({ type: GET_ALL_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+// END TEST ERICA GET ALL
+
+// login action
 export const login = creds => dispatch => {
     dispatch({ type: LOG_START });
     return axios
-    .post(eLogin, creds)
+    .post(`https://pintereach0.herokuapp.com/api/auth/login`, creds)
     .then(res => {
-        // debugger;
         console.log(res)
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('userId', res.data.id);
-        dispatch({ type: LOG_SUCCESS, payload: res.data.payload })
-        // dispatch({ type: SET_ID, userId: res.data.id })
+        localStorage.setItem('userMsg', res.data.message);
+        dispatch({ type: LOG_SUCCESS, payload: res.data.token })
     })
     .catch(err => {
         console.log(err);
@@ -55,16 +74,17 @@ export const login = creds => dispatch => {
     })
 }
 
-// register
+// register action
 export const register = creds => dispatch => {
     dispatch({ type: REG_START })
-    return axios
-    .post(eRegister, creds)
+    axiosWithAuth()
+    .post(`https://pintereach0.herokuapp.com/api/auth/register`, creds)
     .then(res => {
         console.log(res)
         localStorage.setItem('token', res.data.token)
-        localStorage.setItem('userId', res.data.id);
-        dispatch({ type: REG_SUCCESS, payload: res.data.payload })
+        localStorage.setItem('user id', res.data.id)
+        console.log(res.data.id)
+        dispatch({ type: LOG_SUCCESS, payload: res.data.token })
     })
     .catch(err => {
         console.log(err) 
@@ -72,86 +92,85 @@ export const register = creds => dispatch => {
     })
 }
 
-// testing erica's combined endpoint
+// logout action
+export const logout = () => dispatch => {
+    dispatch({ type: LOG_OUT })
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId')
+}
 
-// export const ALL_FETCHING = 'ALL_FETCHING';
-// export const ALL_FETCHED = 'ALL_FETCHED';
-// export const ALL_ERROR = 'ALL_ERROR';
-
-// export const fetchAll = (userId) => dispatch => {
-//     dispatch({ type: ALL_FETCHING });
-//     axiosWithAuth()
-//         .get(`https://pintereach0.herokuapp.com/api/boards/${userId}/all`)
-//         .then(res => {
-//             console.log('[ALL RES]', res);
-//             dispatch({ type: ALL_FETCHED, payload: res.data.boards });
-//         })
-//         .catch(err => {
-//             dispatch({ type: ALL_ERROR, payload: err });
-//         });
-// };
-
-// end erica endpoint test
-
-// boards
-export const fetchBoards = (userId) => dispatch => {
-    dispatch({ type: BOARD_FETCHING });
+// get boards action
+export const getBoards = userId => dispatch => {
+    dispatch({ type: GET_BOARDS_START })
     axiosWithAuth()
-        .get(`https://pintereach0.herokuapp.com/api/boards/${userId}`)
-        .then(res => {
-            console.log('[BOARDS RES]', res.data);
-            dispatch({ type: BOARD_FETCHED, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: BOARD_ERROR, payload: err });
-        });
-};
+    .get(`https://pintereach0.herokuapp.com/api/boards/${userId}`)
+    .then(res => {
+        console.log('[GET BOARDS STATUS]',res)
+        dispatch({ type: GET_BOARDS_SUCCESS, payload: res.data})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
 
-export const addBoard = (newBoard) => dispatch => {
+// add boards action
+export const addBoard = (board) => dispatch => {
+    dispatch({ type: ADD_BOARDS_START })
+    console.log(board)
     axiosWithAuth()
-        .post('https://pintereach0.herokuapp.com/api/boards/', newBoard)
-        .then(res => {
-            dispatch({ type: BOARD_ADD, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: BOARD_ERROR, payload: err });
-        });
-};
+    .post(`https://pintereach0.herokuapp.com/api/boards/`, board)
+    .then (res => {
+        // debugger;
+        console.log(res)
+        dispatch({ type: ADD_BOARDS_SUCCESS, payload: res.data})
+        // this.getBoards(id = 1)
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({ type: ADD_BOARDS_FAIL })
+    })
+}
 
-// articles
-export const fetchArticles = (userId) => dispatch => {
-    dispatch({ type: ARTICLE_FETCHING });
+// get articles action
+export const getArticles = userId => dispatch => {
+    dispatch({ type: GET_ARTICLES_START })
     axiosWithAuth()
-        .get(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
-        .then(res => {
-            console.log('[ARTICLE FETCH]', res);
-            dispatch({ type: ARTICLE_FETCHED, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: ARTICLE_ERROR, payload: err });
-        });
-};
+    .get(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
+    .then(res => {
+        console.log(res)
+        dispatch({ type: GET_ARTICLES_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
 
-export const addArticle = (newArticle) => dispatch => {
+// add articles action
+export const addArticle = article => dispatch => {
+    dispatch({ type: ADD_ARTICLES_START })
     axiosWithAuth()
-        .post('https://pintereach0.herokuapp.com/api/articles/', newArticle)
-        .then(res => {
-            dispatch({ type: ARTICLE_ADD, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: ARTICLE_ERROR, payload: err });
-        });
-};
+    .post(`https://pintereach0.herokuapp.com/api/articles/`, article)
+    .then(res => {
+        console.log(res)
+        dispatch({ type: ADD_ARTICLES_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({ type: ADD_ARTICLES_FAIL })
+    })
+}
 
-export const deleteArticle = (userId, pinId) => dispatch => {
+// delete boards action
+export const deleteBoard = userId => dispatch => {
+    dispatch({ type: DELETE_BOARD_START })
     axiosWithAuth()
-        .delete(`https://pintereach0.herokuapp.com/api/articles/${userId}`)
-        .then(res => {
-            console.log('[DELETE PAYLOAD CHECK]', res);
-            dispatch({ type: ARTICLE_DELETE, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: ARTICLE_ERROR, payload: err });
-        });
-};
-
+    .delete(`https://pintereach0.herokuapp.com/api/boards/${userId}`)
+    .then(res => {
+        console.log(res)
+        dispatch({ type: DELETE_BOARD_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+        console.log(err)
+        dispatch({ type: DELETE_BOARD_FAIL })
+    })
+}
