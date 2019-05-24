@@ -35,6 +35,8 @@ const Board = styled.div`
     margin: 2rem;
     border-radius: 10px 10px 10px 0px;
     background-color: #2B2D42;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.1),
+    2px 0px 4px rgba(0, 0, 0, 0.1), -2px 0px 4px rgba(0, 0, 0, 0.1);
 `
 
 const BoardTitle = styled.h2`

@@ -33,6 +33,8 @@ const ArticlePin = styled.div`
     border-radius: 10px;
     background-color: #2B2D42;
     color: #fff;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.1),
+    2px 0px 4px rgba(0, 0, 0, 0.1), -2px 0px 4px rgba(0, 0, 0, 0.1);
 `
 
 class BoardView extends Component {

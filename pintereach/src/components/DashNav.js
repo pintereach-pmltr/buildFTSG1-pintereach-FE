@@ -31,6 +31,8 @@ const DashNavView = styled.div`
     border-radius: 10px;
     box-shadow: 1px 1px #141618;
     background-color: #2B2D42;
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.1),
+    2px 0px 4px rgba(0, 0, 0, 0.1), -2px 0px 4px rgba(0, 0, 0, 0.1);
 `
 
 const DashNav = () => {
