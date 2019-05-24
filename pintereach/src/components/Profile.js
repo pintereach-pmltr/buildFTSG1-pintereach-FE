@@ -71,13 +71,18 @@ const Avatar = styled.div`
 `
 
 const Profile = () => {
+    const userMsg = localStorage.getItem('userMsg');
+    const userSplit = userMsg.split(' ');
+    const userReturn = userSplit[1];
+    const userName = userReturn.replace('!,', '');
+    console.log('[USERNAME]', userName)
     return (
         <ProfileContainer>
             <ProfileContent>
                 <BioContainer>
-                    <BioTitle>User Name</BioTitle>
+                    <BioTitle>{userName}</BioTitle>
                     <BioFollows>999 followers - 9 following</BioFollows>
-                    <Bio>O-oooooooooo AAAAE-A-A-I-A-U- JO-oooooooooooo AAE-O-A-A-U-U-A- E-eee-ee-eee AAAAE-A-E-I-E-A-JO-ooo-oo-oo-oo EEEEO-A-AAA-AAAA</Bio>
+                    <Bio>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum finibus dui congue semper. Cras fermentum ligula quis risus aliquet accumsan.</Bio>
                 </BioContainer>
 
                 <AvatarContainer>
