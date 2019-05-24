@@ -80,9 +80,9 @@ class Register extends Component {
 
     register = e => {
         e.preventDefault();
-        this.props.register(this.state.credentials).then(() => {
-            this.props.history.push('/dashboard')
-        })
+        console.log('[REGISTER PROPS CHECK]', this.props.register)
+        this.props.register(this.state.credentials)
+        this.props.history.push('/dashboard')
     }
     
     render() {

@@ -50,24 +50,36 @@ class BoardForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: undefined,
-            board_title: '',
-            user_id: undefined
+            boards: {
+                id: '',
+                board_title: '',
+                user_id: localStorage.getItem('userId')
+            }
         }
     }
     
 
     changeHandler = event => {
-        this.setState({ [event.target.name]: event.target.value })
+        this.setState({
+            boards: {
+              ...this.state.boards,
+              [event.target.name]: event.target.value
+            }
+          });
     };
 
-    addBoard = e => {
-        e.preventDefault();
-        const user_id = localStorage.getItem('userId');
-        const { id, board_title } = this.state;
-        let newBoard = {id, board_title, user_id};
-        this.props.addBoard(newBoard)
-    }
+    addBoard = event => {
+        const user_id = localStorage.getItem('user id')
+        event.preventDefault();
+        if (!this.state.boards) return;
+        this.props.addBoard(this.state.boards);
+        this.setState({
+          boards: {
+            board_title: "",
+            user_id: user_id
+          }
+        });
+      };
     
     render() {
         return (
