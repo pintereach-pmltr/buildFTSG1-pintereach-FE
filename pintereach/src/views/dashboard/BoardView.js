@@ -4,18 +4,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class BoardView extends Component {
-  //     getArticles = () => {
-  //     this.props.boards.map(board => {
-  //       if (board.articles) {
-  //         board.articles.forEach(function(article) {
-  //           return <div>{article.article_label}</div>;
-  //         });
-  //       }
-  //     });
-  //   };
 
+  state = {
+      myBoard: ''
+  }
+
+  componentDidMount() {
+    let pathname = this.props.location.pathname;
+    let myBoardId = pathname.replace(/\D/g, "");
+    this.setState({ myBoard: myBoardId })
+  }
+    
   render() {
-    console.log("[BOARDVIEW PROPS CHECK]", this.props);
+    console.log('CHECK STATE', this.state.myBoard)
     return (
       <div>
         {this.props.boards.map(board => {
@@ -23,11 +24,13 @@ class BoardView extends Component {
             return (
               <div>
                 {board.articles.map((article, articleIndex) => {
+                  if (article.board_id === parseInt(this.state.myBoard)) {
                   return (
                     <div key={`article = ${articleIndex}`}>
                       {article.article_label}
                     </div>
                   );
+                  }
                 })}
               </div>
             );
