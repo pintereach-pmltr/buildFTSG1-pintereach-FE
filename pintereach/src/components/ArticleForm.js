@@ -4,6 +4,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // action imports
 import { addArticle } from '../store/actions/index'
+// styled components imports
+import styled from 'styled-components';
+
+// styled components
+
 
 class ArticleForm extends Component {
     constructor(props) {

@@ -4,6 +4,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // react router imports
 import { NavLink } from 'react-router-dom';
+// actions imports
+import { deleteArticle } from '../../store/actions/index'
+// component imports
+import ArticleForm from '../../components/ArticleForm';
 // styled components imports
 import styled from 'styled-components';
 
@@ -38,9 +42,14 @@ class BoardView extends Component {
   }
 
   componentDidMount() {
+    const userId = localStorage.getItem('userId');
     let pathname = this.props.location.pathname;
     let myBoardId = pathname.replace(/\D/g, "");
     this.setState({ myBoard: myBoardId })
+  }
+
+  deleteArticle = userId => {
+      this.props.deleteArticle(userId);
   }
     
   render() {
@@ -48,6 +57,8 @@ class BoardView extends Component {
     return (
       <ArticleContainer>
         <ArticleContent>
+            <ArticleForm />
+            <div>
             {this.props.boards.map(board => {
             if (board.articles) {
                 return (
@@ -59,7 +70,7 @@ class BoardView extends Component {
                             <span>{article.article_label}</span>
                             <a target="_blank" href={article.url.toString()}>{article.url}</a>
                             <span>{article.board_id}</span>
-                            <button>Delete</button>
+                            <button onClick={() =>this.deleteArticle(article.id)}>Delete</button>
                         </ArticlePin>
                     );
                     }
@@ -68,6 +79,7 @@ class BoardView extends Component {
                 );
             }
             })}
+            </div>
         </ArticleContent>
       </ArticleContainer>
     );
@@ -80,4 +92,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {})(BoardView);
+export default connect(mapStateToProps, { deleteArticle })(BoardView);
