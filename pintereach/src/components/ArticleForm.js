@@ -10,6 +10,7 @@ import styled from 'styled-components';
 // styled components
 const FormContainer = styled.div`
     width: 100%;
+    margin: 5rem 0;
 `
 
 const FormContent = styled.div`
@@ -38,9 +39,11 @@ const FormInput = styled.input`
 
 const FormSubmit = styled.input`
     width: 100px;
-    height: 2.5rem;
-    border-radius: 10px;
-    background-color: red;
+    height: 2.75rem;
+    border-radius: 10px 10px 10px 0;
+    background-color: #EF233C;
+    font-weight: bold;
+    color: #2B2D42;
 `
 
 class ArticleForm extends Component {
@@ -92,7 +95,7 @@ class ArticleForm extends Component {
                         value={this.state.board_id} 
                         onChange={this.changeHandler} />
 
-                        <FormSubmit type="submit" value="submit" />
+                        <FormSubmit type="submit" value="SUBMIT" />
                     </FormArticles>
                 </FormContent>
             </FormContainer>

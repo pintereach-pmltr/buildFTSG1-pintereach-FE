@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // react router imports
 import { NavLink } from 'react-router-dom';
 // component imports
-// import BoardView from './BoardView';
+import BoardForm from '../../components/BoardForm';
 // styled components imports
 import styled from 'styled-components';
 
@@ -32,6 +32,7 @@ const Board = styled.div`
     flex-flow: column nowrap;
     justify-content: space-around;
     align-items: center;
+    margin: 2rem;
     border-radius: 10px 10px 10px 0px;
     background-color: #2B2D42;
 `
@@ -48,6 +49,7 @@ class Boards extends Component {
         return (
             <BoardsContainer>
                 <BoardsContent>
+                    <BoardForm />
                     {this.props.boards.map(board => {
                         return (
                             <Board key={board.id}>

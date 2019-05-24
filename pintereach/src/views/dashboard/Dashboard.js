@@ -50,7 +50,7 @@ class Dashboard extends Component {
                 
                 
                 
-                <DataCheck>
+                {/* <DataCheck>
                 <span>-- DASHBOARD AND DATA FUNCTIONALITY CHECKS --</span>
                 <BoardForm />
                 {this.props.boards.map(board => {
@@ -61,7 +61,7 @@ class Dashboard extends Component {
                 {this.props.articles.map(article => {
                     return <div key={article.id}>{article.article_label}</div>
                 })}
-                </DataCheck>
+                </DataCheck> */}
             </div>
         );
     }
