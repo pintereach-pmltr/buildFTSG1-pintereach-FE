@@ -60,7 +60,7 @@ const Navigation = () => {
         <NavFullWidth>
             <NavContainer>
                 <LogoContainer>
-                <Logo><i class="fas fa-bookmark"></i></Logo>
+                <Logo><i className="fas fa-bookmark"></i></Logo>
                 <h1>Pintereach</h1>
                 </LogoContainer>
                 <NavLink to='/'><MenuItem>Logout</MenuItem></NavLink>

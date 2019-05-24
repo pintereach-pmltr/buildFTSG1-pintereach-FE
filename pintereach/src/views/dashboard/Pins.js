@@ -2,8 +2,11 @@
 import React, { Component } from 'react';
 // redux imports
 import { connect } from 'react-redux';
+// action imports
+import { deleteArticle } from '../../store/actions/index';
 // component imports
 import Pin from './Pin';
+import ArticleForm from '../../components/ArticleForm';
 // styled components imports
 import styled from 'styled-components';
 
@@ -36,11 +39,23 @@ const ArticlePin = styled.div`
 `
 
 class Pins extends Component {
+    componentDidMount() {
+        // const userId = localStorage.getItem('userId');
+        let pathname = this.props.location.pathname;
+        let myBoardId = pathname.replace(/\D/g, "");
+        this.setState({ myBoard: myBoardId })
+      }
+    
+      deleteArticle = userId => {
+          this.props.deleteArticle(userId);
+      }
+    
     render() {
         console.log('[CHECK PINS STATE]', this.props);
         return (
             <PinsContainer>
                 <PinsContent>
+                <ArticleForm />
                 <div>
             {this.props.boards.map(board => {
             if (board.articles) {
@@ -75,4 +90,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {})(Pins);
+export default connect(mapStateToProps, { deleteArticle })(Pins);

@@ -149,7 +149,7 @@ const reducer = (state = initialState, action) => {
       return {
           ...state,
           deletingBoard: false,
-          boards: [...state.articles, {...action.payload}]
+          boards: [...state.boards, ...action.payload]
       }
       case actionTypes.DELETE_BOARD_FAIL:
       return {

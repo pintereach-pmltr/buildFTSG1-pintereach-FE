@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // react router imports
 import { NavLink } from 'react-router-dom';
+// action imports
+import { deleteBoard } from '../../store/actions/index';
 // component imports
 import BoardForm from '../../components/BoardForm';
 // styled components imports
@@ -30,7 +32,7 @@ const Board = styled.div`
     height: 200px;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin: 2rem;
     border-radius: 10px 10px 10px 0px;
@@ -40,13 +42,27 @@ const Board = styled.div`
 `
 
 const BoardTitle = styled.h2`
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     text-align: center;
     color: #fff;
 `
 
+const BoardDelete = styled.span`
+    color: #D90429;
+    font-size: 0.8rem;
+`
+
 class Boards extends Component {
+    
+    componentDidMount() {
+        const userId = localStorage.getItem('userId');
+    }
+    
+    deleteBoard = userId => {
+        this.props.deleteBoard(userId)
+    }
+   
     render() {
         return (
             <BoardsContainer>
@@ -55,9 +71,13 @@ class Boards extends Component {
                     {this.props.boards.map(board => {
                         return (
                             <Board key={board.id}>
-                                <BoardTitle>
-                                <NavLink to={`/dashboard/board/${board.id}`}>{board.board_title}</NavLink>
-                                </BoardTitle>
+                                <NavLink to={`/dashboard/board/${board.id}`}>
+                                    <BoardTitle>
+                                    {board.board_title}
+                                    </BoardTitle>
+                                </NavLink>
+
+                                <BoardDelete onClick={() => this.deleteBoard(board.id)}>( delete )</BoardDelete>
                             </Board>
                         );
                     })}
@@ -73,4 +93,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {})(Boards);
+export default connect(mapStateToProps, { deleteBoard })(Boards);
