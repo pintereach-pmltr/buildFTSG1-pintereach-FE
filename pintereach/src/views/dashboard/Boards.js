@@ -50,10 +50,9 @@ class Boards extends Component {
                 <BoardsContent>
                     {this.props.boards.map(board => {
                         return (
-                            <Board>
+                            <Board key={board.id}>
                                 <BoardTitle>
                                 <NavLink to={`/dashboard/board/${board.id}`}>{board.board_title}</NavLink>
-                                
                                 </BoardTitle>
                             </Board>
                         );

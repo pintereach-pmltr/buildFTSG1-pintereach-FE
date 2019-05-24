@@ -4,16 +4,6 @@ import * as actionTypes from '../actions/index';
 const initialState = {
   boards: [],
   articles: [],
-  // fetchingArticles: false,
-  // fetchingBoards: false,
-  // isLoggingIn: false,
-  // error: "",
-  // postingArticles: false,
-  // isRegistering: false,
-  // isLoggingOutl: false,
-  // postingBoards: false,
-  // user_id: localStorage.getItem('user_id'),
-  // deletingBoard: false
 };
 
 

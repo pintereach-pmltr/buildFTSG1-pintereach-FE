@@ -4,26 +4,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class BoardView extends Component {
+  //     getArticles = () => {
+  //     this.props.boards.map(board => {
+  //       if (board.articles) {
+  //         board.articles.forEach(function(article) {
+  //           return <div>{article.article_label}</div>;
+  //         });
+  //       }
+  //     });
+  //   };
 
-    getArticles = () => {
-        this.props.boards.map(board => {
-            if(board.articles) {
-                board.articles.forEach(function(article) {
-                    return <div>{article.article_label}</div>
-                })
-            } 
-        })
-    }
-    
-    render() {
-        console.log('[BOARDVIEW PROPS CHECK]', this.props)
-        return (
-            <div>
-                <span>HELLO FROM BOARDVIEW</span>
-                {this.getArticles}
-            </div>
-        );
-    }
+  render() {
+    console.log("[BOARDVIEW PROPS CHECK]", this.props);
+    return (
+      <div>
+        {this.props.boards.map(board => {
+          if (board.articles) {
+            return (
+              <div>
+                {board.articles.map((article, articleIndex) => {
+                  return (
+                    <div key={`article = ${articleIndex}`}>
+                      {article.article_label}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          }
+        })}
+      </div>
+    );
+  }
 };
 
 const mapStateToProps = state => {
