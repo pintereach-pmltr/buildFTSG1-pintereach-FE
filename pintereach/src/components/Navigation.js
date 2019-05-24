@@ -1,7 +1,11 @@
 // react imports
-import React from 'react';
+import React, { Component } from 'react';
+// redux imports
+import { connect } from 'react-redux';
 // react router imports
 import { NavLink } from 'react-router-dom';
+// action imports
+import { logout } from '../store/actions/index';
 // styled components imports
 import styled from 'styled-components';
 
@@ -55,18 +59,20 @@ const MenuItem = styled.div`
     2px 0px 4px rgba(0, 0, 0, 0.1), -2px 0px 4px rgba(0, 0, 0, 0.1);
 `
 
-const Navigation = () => {
-    return (
-        <NavFullWidth>
-            <NavContainer>
-                <LogoContainer>
-                <Logo><i className="fas fa-bookmark"></i></Logo>
-                <h1>Pintereach</h1>
-                </LogoContainer>
-                <NavLink to='/'><MenuItem>Logout</MenuItem></NavLink>
-            </NavContainer>
-        </NavFullWidth>
-    );
+class Navigation extends Component {
+    render() {
+        return (
+            <NavFullWidth>
+                <NavContainer>
+                    <LogoContainer>
+                    <Logo><i className="fas fa-bookmark"></i></Logo>
+                    <h1>Pintereach</h1>
+                    </LogoContainer>
+                    <NavLink onClick={this.logout} exact to='/'><MenuItem>Logout</MenuItem></NavLink>
+                </NavContainer>
+            </NavFullWidth>
+        );
+    }
 };
 
-export default Navigation;
+export default connect(null, { logout })(Navigation);

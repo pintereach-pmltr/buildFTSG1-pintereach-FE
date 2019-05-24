@@ -50,26 +50,35 @@ class ArticleForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            article_label: '',
-            url: '',
-            board_id: '',
-            board_name: ''
+            articles: {
+                article_label: "",
+                url: "",
+                board_id: ''
+              }
         }
     }
     
 
     changeHandler = event => {
-        this.setState({ [event.target.name]: event.target.value })
+        this.setState({
+            articles: {
+              ...this.state.articles,
+              [event.target.name]: event.target.value
+            }
+          });
     };
 
-    addArticle = e => {
-        e.preventDefault();
-        const { article_label, url, board_id, board_name } = this.state;
-        // const board_id = localStorage.getItem('userId');
-        let newArticle = {article_label, url, board_id, board_name};
-        console.log('[STATE CHECK]', this.state);
-        this.props.addArticle(newArticle)
-    }
+    addArticle = event => {
+        event.preventDefault();
+        this.props.addArticle(this.state.articles);
+        this.setState({
+          articles: {
+            article_label: "",
+            url: "",
+            board_id: ''
+          }
+        });
+      };
     
     render() {
         return (
@@ -80,19 +89,19 @@ class ArticleForm extends Component {
                         <FormInput name="article_label"
                         type="article_label" 
                         placeholder="Pin Title" 
-                        value={this.state.article_label}
+                        value={this.state.articles.article_label}
                         onChange={this.changeHandler} />
 
                         <FormInput name="url" 
                         type="text"
                         placeholder="URL - ex. www.medium.com" 
-                        value={this.state.url} 
+                        value={this.state.articles.url} 
                         onChange={this.changeHandler} />
 
                         <FormInput name="board_id" 
                         type="text"
                         placeholder="Board ID" 
-                        value={this.state.board_id} 
+                        value={this.state.articles.board_id} 
                         onChange={this.changeHandler} />
 
                         <FormSubmit type="submit" value="SUBMIT" />

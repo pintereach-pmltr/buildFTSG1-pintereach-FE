@@ -40,7 +40,8 @@ const ArticlePin = styled.div`
 class BoardView extends Component {
 
   state = {
-      myBoard: ''
+      myBoard: '',
+      
   }
 
   componentDidMount() {

@@ -59,10 +59,13 @@ const Bio = styled.p`
 `
 
 // avatar elements
-const Avatar = styled.img`
+const Avatar = styled.div`
     width: 250px;
     height: 250px;
     border-radius: 150px;
+    background-image: url('https://www.merriam-webster.com/assets/mw/images/article/art-wap-article-main/egg-3442-e1f6463624338504cd021bf23aef8441@1x.jpg');
+    background-size: cover;
+    background-position: center;
     box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.1),
     2px 0px 4px rgba(0, 0, 0, 0.1), -2px 0px 4px rgba(0, 0, 0, 0.1);
 `
@@ -78,7 +81,7 @@ const Profile = () => {
                 </BioContainer>
 
                 <AvatarContainer>
-                    <Avatar src="https://fivethirtyeight.com/wp-content/uploads/2015/10/kappadeseno_lede.jpg?w=575" alt="kappa" />
+                    <Avatar src="https://www.merriam-webster.com/assets/mw/images/article/art-wap-article-main/egg-3442-e1f6463624338504cd021bf23aef8441@1x.jpg" alt="kappa"></Avatar>
                 </AvatarContainer>
             </ProfileContent>
         </ProfileContainer>

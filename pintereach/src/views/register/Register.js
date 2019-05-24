@@ -83,6 +83,7 @@ class Register extends Component {
         console.log('[REGISTER PROPS CHECK]', this.props.register)
         this.props.register(this.state.credentials)
         this.props.history.push('/dashboard')
+        alert('Welcome! You have been successfully registered. Please login.');
     }
     
     render() {
