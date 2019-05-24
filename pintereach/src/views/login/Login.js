@@ -21,9 +21,10 @@ const LoginContainer = styled.div`
 `
 
 const LoginForm = styled.form`
-  background-color: #8D99AE;
+  background-color: #2B2D42;
   width: 100%;
-  height: 25rem;
+  max-width: 30rem;
+  height: 30rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -33,15 +34,31 @@ const LoginForm = styled.form`
 `
 
 const LoginInput = styled.input`
-  width: 80%;
+  width: 60%;
   height: 3rem;
-  margin: 0.25rem;
+  margin: 0.5rem;
+  text-align: center;
 `
 
 const LoginButton = styled.button`
   width: 50%;
   height: 3rem;
-  margin: 1rem;
+  margin: 2rem;
+  background-color: #EF233C;
+  border-radius: 10px;
+  border: none;
+  color: #EDF2F4;
+  font-weight: bold;
+  font-size: 1rem;
+`
+
+const LoginHeader = styled.h1`
+  color: #EF233C;
+  margin-bottom: 1rem;
+`
+
+const LoginSpan = styled.span`
+  color: #EDF2F4;
 `
 
 class Login extends Component {
@@ -72,11 +89,11 @@ class Login extends Component {
     return (
       <LoginContainer>
         <LoginForm onSubmit={this.login}>
-        <h1>Pintereach</h1>
-        <LoginInput name='username' value={this.state.credentials.username} onChange={this.handleChanges} placeholder="Username" />
-        <LoginInput name='password' value={this.state.credentials.password} onChange={this.handleChanges}  placeholder="Password" />
+        <LoginHeader>Pintereach</LoginHeader>
+        <LoginInput name='username' value={this.state.credentials.username} onChange={this.handleChanges} placeholder="username" />
+        <LoginInput name='password' value={this.state.credentials.password} onChange={this.handleChanges}  placeholder="password" />
           <LoginButton>Login</LoginButton>
-          <p>Need an account? <NavLink to='/register'>Register here.</NavLink></p>
+          <p><LoginSpan>Need an account?</LoginSpan></p> <NavLink to='/register'>Register here.</NavLink>
         </LoginForm>
       </LoginContainer>
     );
