@@ -8,7 +8,40 @@ import { addArticle } from '../store/actions/index'
 import styled from 'styled-components';
 
 // styled components
+const FormContainer = styled.div`
+    width: 100%;
+`
 
+const FormContent = styled.div`
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+`
+
+const FormArticles = styled.form`
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const FormInput = styled.input`
+    width: 20rem;
+    height: 2.5rem;
+    margin: 0 1rem;
+    text-align: center;
+    background-color: #EDF2F4;
+`
+
+const FormSubmit = styled.input`
+    width: 100px;
+    height: 2.5rem;
+    border-radius: 10px;
+    background-color: red;
+`
 
 class ArticleForm extends Component {
     constructor(props) {
@@ -37,35 +70,32 @@ class ArticleForm extends Component {
     
     render() {
         return (
-            <div>
-                <form onSubmit={this.addArticle}>
-                    <input name="id" 
-                    type="id"
-                    placeholder="article id" 
-                    value={this.state.id} 
-                    onChange={this.changeHandler} />
+            <FormContainer>
+                <FormContent>
+                    <FormArticles onSubmit={this.addArticle}>
+                        
+                        <FormInput name="article_label"
+                        type="article_label" 
+                        placeholder="Pin Title" 
+                        value={this.state.article_label}
+                        onChange={this.changeHandler} />
 
-                    <input name="article_label"
-                    type="article_label" 
-                    placeholder="article label" 
-                    value={this.state.article_label}
-                    onChange={this.changeHandler} />
+                        <FormInput name="url" 
+                        type="text"
+                        placeholder="URL - ex. www.medium.com" 
+                        value={this.state.url} 
+                        onChange={this.changeHandler} />
 
-                    <input name="url" 
-                    type="text"
-                    placeholder="url" 
-                    value={this.state.url} 
-                    onChange={this.changeHandler} />
+                        <FormInput name="board_id" 
+                        type="text"
+                        placeholder="Board ID" 
+                        value={this.state.board_id} 
+                        onChange={this.changeHandler} />
 
-                    <input name="board_id" 
-                    type="text"
-                    placeholder="board id" 
-                    value={this.state.board_id} 
-                    onChange={this.changeHandler} />
-
-                    <input type="submit" value="submit" />
-                </form>
-            </div>
+                        <FormSubmit type="submit" value="submit" />
+                    </FormArticles>
+                </FormContent>
+            </FormContainer>
         );
     }
 };

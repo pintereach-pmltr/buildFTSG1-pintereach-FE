@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // redux imports
 import { connect } from 'react-redux';
 // react router imports
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 // actions imports
 import { deleteArticle } from '../../store/actions/index'
 // component imports
@@ -42,7 +42,7 @@ class BoardView extends Component {
   }
 
   componentDidMount() {
-    const userId = localStorage.getItem('userId');
+    // const userId = localStorage.getItem('userId');
     let pathname = this.props.location.pathname;
     let myBoardId = pathname.replace(/\D/g, "");
     this.setState({ myBoard: myBoardId })
